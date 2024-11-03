@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  labjack_app:
+    build: .
+    container_name: labjack_app
+    environment:
+      - LABJACK_IP=${LABJACK_IP}
+    depends_on:
+      - mqtt_broker
+    networks:
+      - app_network
+
+  mqtt_broker:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt_broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge  
