@@ -1,4 +1,4 @@
 # .gitignore for zig 
-.zig-cache/
-zig-out/
-
+*.zig-cache/
+*paho.mqtt.c/
+zig-out
